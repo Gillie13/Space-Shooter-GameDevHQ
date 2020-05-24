@@ -86,7 +86,6 @@ public class Player : MonoBehaviour
             FireLaser();
         }
 
-
     }
 
     void CalculateMovement()
@@ -140,7 +139,6 @@ public class Player : MonoBehaviour
             return;
         }
 
-
         _lives--;
 
         if (_lives == 2)
@@ -161,7 +159,6 @@ public class Player : MonoBehaviour
 
         }
 
-
     }
 
     public void ShieldActive()
@@ -170,7 +167,6 @@ public class Player : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(true);
 
     }
-
 
 
     public void TripleShotActive()

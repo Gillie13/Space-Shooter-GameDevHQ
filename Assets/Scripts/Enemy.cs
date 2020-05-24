@@ -7,13 +7,9 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     private float _speed = 2.0f;
-
     private Player _player;
-
     private Laser _laser;
-
     private Animator _anim;
-
     private AudioSource _audioSource;
 
     [SerializeField]
