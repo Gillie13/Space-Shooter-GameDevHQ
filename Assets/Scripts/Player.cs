@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
 
     private UI_Manager _uiManager;
 
+    private CameraShake _shake;
+
 
 
 
@@ -54,6 +56,7 @@ public class Player : MonoBehaviour
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         _uiManager = GameObject.Find("Canvas").GetComponent<UI_Manager>();
         _audioSource = GetComponent<AudioSource>();
+        _shake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
 
         if (_spawnManager == null)
         {
@@ -64,6 +67,11 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("The UI Manager is NULL!");
         }
+
+        /*if (_shake == null)
+        {
+            Debug.LogError("The Camera Shake is NULL!");
+        } */
 
         if (_audioSource == null)
         {
@@ -138,6 +146,8 @@ public class Player : MonoBehaviour
             transform.GetChild(0).gameObject.SetActive(false);
             return;
         }
+
+        _shake.StartShake();
 
         _lives--;
 

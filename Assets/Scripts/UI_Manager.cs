@@ -36,7 +36,6 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
-    
 
     public void UpdateScore(int playerScore)
     {
