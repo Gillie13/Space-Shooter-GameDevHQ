@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     private float _SpeedBoostCooldown = 5.0f;
     [SerializeField]
     private bool _isShieldActive = false;
+    private float _speedBoost = 1.0f;
 
     [SerializeField]
     private GameObject _rightEngine, _leftEngine;
@@ -68,10 +69,10 @@ public class Player : MonoBehaviour
             Debug.LogError("The UI Manager is NULL!");
         }
 
-        /*if (_shake == null)
+        if (_shake == null)
         {
             Debug.LogError("The Camera Shake is NULL!");
-        } */
+        } 
 
         if (_audioSource == null)
         {
@@ -87,6 +88,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+  
         CalculateMovement();
 
         if (Input.GetKey(KeyCode.Space) && Time.time > _canFire)
@@ -94,14 +96,25 @@ public class Player : MonoBehaviour
             FireLaser();
         }
 
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            _speedBoost = 2.0f;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            _speedBoost = 1.0f;
+        }
+
+
     }
 
     void CalculateMovement()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
+
         Vector3 direction = new Vector3(horizontalInput, verticalInput, 0);
-        transform.Translate(direction * _speed * Time.deltaTime);
+        transform.Translate(direction * (_speed * _speedBoost) * Time.deltaTime);
 
         if (transform.position.y >= 0)
         {
@@ -217,5 +230,6 @@ public class Player : MonoBehaviour
         _score += points;
         _uiManager.UpdateScore(_score);
     }
+
 
 }
