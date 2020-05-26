@@ -216,6 +216,22 @@ public class Player : MonoBehaviour
 
     }
 
+    public void RestoreLife()
+    {
+        if (_lives == 2)
+        {
+            _lives++;
+            _leftEngine.SetActive(false);
+
+        } else if (_lives == 1)
+        {
+            _lives++;
+            _rightEngine.SetActive(false);
+        }
+
+        _uiManager.UpdateLives(_lives);
+    }
+
     public void ShieldActive()
     {
         _isShieldActive = true;
@@ -270,6 +286,7 @@ public class Player : MonoBehaviour
         _laserAmmo += 15;
         _uiManager.UpdateAmmo(_laserAmmo);
     }
+
 
 
 }
