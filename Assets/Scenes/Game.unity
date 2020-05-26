@@ -2022,6 +2022,7 @@ MonoBehaviour:
   - {fileID: 1088768962755905889, guid: b845bb06abe1646fb8a1e5d80472bcbc, type: 3}
   - {fileID: 2333625711653755781, guid: d303e2510b47a4958b2d539a5caa01a1, type: 3}
   - {fileID: 3248389524871544289, guid: 1ff10d376787f4282b575bc389a271ae, type: 3}
+  - {fileID: 4245500006325131139, guid: b91c544cb38fe4efeade85621cf3e70e, type: 3}
 --- !u!4 &2021236792
 Transform:
   m_ObjectHideFlags: 0
