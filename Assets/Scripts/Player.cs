@@ -29,6 +29,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool _isShieldActive = false;
     private float _speedBoost = 1.0f;
+    [SerializeField]
+    private int _laserAmmo = 15;
 
     [SerializeField]
     private GameObject _rightEngine, _leftEngine;
@@ -148,15 +150,18 @@ public class Player : MonoBehaviour
 
     void FireLaser()
     {
+
         _canFire = Time.time + _fireRate;
         if (_isTripleShotActive == true)
         {
             Instantiate(_tripleShotPrefab, transform.position + new Vector3(-0.2f, 0.15f, 0), Quaternion.identity);
         }
-        else
+        else if (_laserAmmo >= 1)
         {
+            _laserAmmo--;
+            _uiManager.UpdateAmmo(_laserAmmo);
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
-        }
+        } 
 
         _audioSource.Play();
     }
