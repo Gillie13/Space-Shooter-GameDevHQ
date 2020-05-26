@@ -357,6 +357,7 @@ MonoBehaviour:
     type: 3}
   _fireRate: 0.15
   _lives: 3
+  _shieldlives: 3
   _tripleShotCooldown: 5
   _SpeedBoostCooldown: 5
   _isShieldActive: 0
@@ -713,9 +714,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95e24886287a74222ae213680547e97c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _duration: 0
-  _strength: 1
-  _remainingDuration: 0
 --- !u!1 &230237962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,6 +1256,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055613175592490482, guid: 2eabb81ba9bca4ff0bfc38bdb235e52f,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055613175592490482, guid: 2eabb81ba9bca4ff0bfc38bdb235e52f,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055613175592490482, guid: 2eabb81ba9bca4ff0bfc38bdb235e52f,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055613175592490482, guid: 2eabb81ba9bca4ff0bfc38bdb235e52f,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7438544817844407330, guid: 2eabb81ba9bca4ff0bfc38bdb235e52f,
         type: 3}
