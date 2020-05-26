@@ -5,7 +5,6 @@ using UnityEngine;
 public class Laser : MonoBehaviour
 {
 
-    //speed variable of 8
     private float _laserSpeed = 8.0f;
     private bool _isEnemyLaser = false;
 
