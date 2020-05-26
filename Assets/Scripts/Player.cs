@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     private float _canFire = -1f;
     [SerializeField]
     private int _lives = 3;
+    [SerializeField]
+    private int _shieldlives = 3;
     private SpawnManager _spawnManager;
     private bool _isTripleShotActive = false;
     [SerializeField]
@@ -45,6 +47,8 @@ public class Player : MonoBehaviour
 
     private CameraShake _shake;
 
+    private SpriteRenderer _spriteRender; 
+
 
 
 
@@ -58,6 +62,8 @@ public class Player : MonoBehaviour
         _uiManager = GameObject.Find("Canvas").GetComponent<UI_Manager>();
         _audioSource = GetComponent<AudioSource>();
         _shake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
+        _spriteRender = gameObject.transform.Find("Shields").gameObject.GetComponent<SpriteRenderer>();
+
 
         if (_spawnManager == null)
         {
@@ -72,7 +78,12 @@ public class Player : MonoBehaviour
         if (_shake == null)
         {
             Debug.LogError("The Camera Shake is NULL!");
-        } 
+        }
+
+        if (_spriteRender == null)
+        {
+            Debug.LogError("The SpriteRenderer is NULL!");
+        }
 
         if (_audioSource == null)
         {
@@ -155,9 +166,25 @@ public class Player : MonoBehaviour
 
         if (_isShieldActive == true)
         {
-            _isShieldActive = false;
-            transform.GetChild(0).gameObject.SetActive(false);
-            return;
+            
+            _shieldlives--;
+            if (_shieldlives == 2)
+            {
+                _spriteRender.color = new Color (1f, 1f, 1f, 0.6f);
+                return;
+            }
+            else if (_shieldlives == 1)
+            {
+                _spriteRender.color = new Color (1f, 1f, 1f, 0.2f);
+                return;
+            }
+            else
+            {
+                _isShieldActive = false;
+                transform.GetChild(0).gameObject.SetActive(false);
+                return;
+            }
+            
         }
 
         _shake.StartShake();
@@ -187,7 +214,9 @@ public class Player : MonoBehaviour
     public void ShieldActive()
     {
         _isShieldActive = true;
+        _shieldlives = 3;
         transform.GetChild(0).gameObject.SetActive(true);
+        _spriteRender.color = new Color(1f, 1f, 1f, 1f);
 
     }
 
