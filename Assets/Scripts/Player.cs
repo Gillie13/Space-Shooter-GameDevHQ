@@ -265,5 +265,11 @@ public class Player : MonoBehaviour
         _uiManager.UpdateScore(_score);
     }
 
+    public void CollectAmmo()
+    {
+        _laserAmmo += 15;
+        _uiManager.UpdateAmmo(_laserAmmo);
+    }
+
 
 }
