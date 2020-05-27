@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField]
-    private float _speed = 2.0f;
+    private float _speed = 3.0f;
     private Player _player;
     private Laser _laser;
     private Animator _anim;
@@ -28,6 +27,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("Player is Null!");
         }
+
 
         _anim = GetComponent<Animator>();
 
@@ -62,7 +62,7 @@ public class Enemy : MonoBehaviour
     void CalculateMovement()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
-        if (transform.position.y <= -6f)
+        if (transform.position.y <= -7f)
         {
             float randomX = Random.Range(-9f, 9f);
             transform.position = new Vector3(randomX, 7, 0);
@@ -101,6 +101,20 @@ public class Enemy : MonoBehaviour
             Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, 2.8f);
           
+        }
+
+        if (other.tag == "Missile")
+        {
+            Destroy(other.gameObject);
+            if (_player != null)
+            {
+                _player.AddScore(10);
+            }
+            _anim.SetTrigger("OnEnemyDeath");
+            _speed = 2;
+            _audioSource.Play();
+            Destroy(GetComponent<Collider2D>());
+            Destroy(this.gameObject, 2.8f);
         }
     }
 

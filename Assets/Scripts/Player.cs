@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private GameObject _shieldOnPrefab;
     [SerializeField]
-    private float _fireRate = 0.15f;
+    private GameObject _missileShotPrefab;
+    private float _fireRate = 0.5f;
     private float _canFire = -1f;
     [SerializeField]
     private int _lives = 3;
@@ -23,6 +24,8 @@ public class Player : MonoBehaviour
     private bool _isTripleShotActive = false;
     [SerializeField]
     private float _tripleShotCooldown = 5.0f;
+    private bool _isMissilesActive = false;
+    private float _missilesCooldown = 5.0f;
     private bool _isSpeedBoostActive = false;
     [SerializeField]
     private float _SpeedBoostCooldown = 5.0f;
@@ -49,11 +52,7 @@ public class Player : MonoBehaviour
 
     private CameraShake _shake;
 
-    private SpriteRenderer _spriteRender; 
-
-
-
-
+    private SpriteRenderer _spriteRender;
 
 
     // Start is called before the first frame update
@@ -150,20 +149,33 @@ public class Player : MonoBehaviour
 
     void FireLaser()
     {
+        if (_isMissilesActive == true)
+        {
+            _fireRate = 1.5f;
+        } else
+        {
+            _fireRate = 0.2f;
+        }
 
         _canFire = Time.time + _fireRate;
-        if (_isTripleShotActive == true)
+        if (_isTripleShotActive == true && _isMissilesActive == false)
         {
             Instantiate(_tripleShotPrefab, transform.position + new Vector3(-0.2f, 0.15f, 0), Quaternion.identity);
+            _audioSource.Play();
         }
-        else if (_laserAmmo >= 1)
+        else if (_isMissilesActive ==true && _isTripleShotActive == false && GameObject.FindGameObjectWithTag("Enemy") != null)
+        {
+            Instantiate(_missileShotPrefab, transform.position + new Vector3(0, 1.5f, 0), Quaternion.identity);
+        }
+        else if (_laserAmmo >= 1 && _isMissilesActive == false)
         {
             _laserAmmo--;
             _uiManager.UpdateAmmo(_laserAmmo);
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
+            _audioSource.Play();
         } 
 
-        _audioSource.Play();
+        
     }
 
     public void Damage()
@@ -254,6 +266,21 @@ public class Player : MonoBehaviour
         {
             yield return new WaitForSeconds(_tripleShotCooldown);
             _isTripleShotActive = false;
+        }
+    }
+
+    public void MissilesActive()
+    {
+        _isMissilesActive = true;
+        StartCoroutine(MissilesActiveRoutine());
+    }
+
+    IEnumerator MissilesActiveRoutine()
+    {
+        while(_isMissilesActive == true)
+        {
+            yield return new WaitForSeconds(_missilesCooldown);
+            _isMissilesActive = false;
         }
     }
 
