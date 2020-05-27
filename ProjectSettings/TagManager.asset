@@ -9,6 +9,8 @@ TagManager:
   - PowerUp
   - Asteroid
   - EnemyLaser
+  - Shield
+  - Missile
   layers:
   - Default
   - TransparentFX
