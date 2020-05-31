@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     private float _speedBoost = 1.0f;
     [SerializeField]
     private int _laserAmmo = 15;
+    private ThrusterBar _thrusters;
 
     [SerializeField]
     private GameObject _rightEngine, _leftEngine;
@@ -64,6 +65,7 @@ public class Player : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _shake = GameObject.Find("Main Camera").GetComponent<CameraShake>();
         _spriteRender = gameObject.transform.Find("Shields").gameObject.GetComponent<SpriteRenderer>();
+        _thrusters = GameObject.Find("ThrusterBar").GetComponent<ThrusterBar>();
 
 
         if (_spawnManager == null)
@@ -86,6 +88,11 @@ public class Player : MonoBehaviour
             Debug.LogError("The SpriteRenderer is NULL!");
         }
 
+        if (_thrusters == null)
+        {
+            Debug.LogError("The Thrusters is NULL!");
+        }
+
         if (_audioSource == null)
         {
             Debug.LogError("AudioSource on the player is NULL");
@@ -102,23 +109,30 @@ public class Player : MonoBehaviour
     {
   
         CalculateMovement();
+        float _thrusterFuel = _thrusters._thrusterFuel;
+
+
 
         if (Input.GetKey(KeyCode.Space) && Time.time > _canFire)
         {
             FireLaser();
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            _speedBoost = 2.0f;
+            if (_thrusterFuel >= 2)
+            {
+                _speedBoost = 2.0f;
+                _thrusters.UseThruster(2);
+            }
+            else
+            {
+                _speedBoost = 1.0f;
+            }
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            _speedBoost = 1.0f;
-        }
-
-
     }
+
+
 
     void CalculateMovement()
     {
@@ -313,7 +327,5 @@ public class Player : MonoBehaviour
         _laserAmmo += 15;
         _uiManager.UpdateAmmo(_laserAmmo);
     }
-
-
 
 }

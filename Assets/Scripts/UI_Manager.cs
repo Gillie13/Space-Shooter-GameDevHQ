@@ -19,9 +19,7 @@ public class UI_Manager : MonoBehaviour
     [SerializeField]
     private Sprite[] _liveSprites;
 
-
     private GameManager _gameManager;
-
 
 
 
@@ -34,10 +32,6 @@ public class UI_Manager : MonoBehaviour
         _restartLevelPrompt.gameObject.SetActive(false);
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
 
-        if(_gameManager == null)
-        {
-            Debug.LogError("GameManager is NULL");
-        }
     }
 
 
@@ -81,5 +75,4 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
- 
 }
