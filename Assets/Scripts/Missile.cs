@@ -28,6 +28,7 @@ public class Missile : MonoBehaviour
             _rigidBody.angularVelocity = -_angleChangingSpeed * rotateAmount;
             _rigidBody.velocity = transform.up * _movementSpeed;
             Destroy(this.gameObject, 3f);
+
         }
         else
         {

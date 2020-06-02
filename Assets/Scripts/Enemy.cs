@@ -18,6 +18,12 @@ public class Enemy : MonoBehaviour
     private float _fireRate = 3.0f;
     private float _canFire = -1f;
 
+    //Randomised movements variables
+    private float _latestChangeDirectionTime;
+    private readonly float _directionChangeTime = 2f;
+    private float _enemyVelocity = 3f;
+    private Vector2 _movementDirection;
+    private Vector2 _movementPerSecond;
 
 
     private void Start()
@@ -28,6 +34,9 @@ public class Enemy : MonoBehaviour
             Debug.LogError("Player is Null!");
         }
 
+        //Randomised Movement
+        _latestChangeDirectionTime = 0f;
+        CalculateNewMovementVector();
 
         _anim = GetComponent<Animator>();
 
@@ -42,7 +51,16 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CalculateMovement();
+        //Calculate the frequency of direction change
+        if (Time.time - _latestChangeDirectionTime > _directionChangeTime)
+        {
+            _latestChangeDirectionTime = Time.time;
+            CalculateNewMovementVector();
+        }
+
+        //Reposition Enemy once they fly outside the screen
+        transform.position = new Vector2(transform.position.x + (_movementPerSecond.x * Time.deltaTime), transform.position.y + (_movementPerSecond.y * Time.deltaTime));
+
 
         if (Time.time > _canFire)
         {
@@ -59,10 +77,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void CalculateMovement()
+    void CalculateNewMovementVector()
     {
-        transform.Translate(Vector3.down * _speed * Time.deltaTime);
-        if (transform.position.y <= -7f)
+        _movementDirection = new Vector2(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0f)).normalized;
+        _movementPerSecond = _movementDirection * _enemyVelocity;
+        
+        if (transform.position.y <= -7f || transform.position.y >= 8f || transform.position.x <= -10f || transform.position.x >= 10f)
         {
             float randomX = Random.Range(-9f, 9f);
             transform.position = new Vector3(randomX, 7, 0);
@@ -85,7 +105,6 @@ public class Enemy : MonoBehaviour
             _audioSource.Play();
             Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, 2.8f);
-            
         }
 
         if(other.tag == "Laser")
@@ -100,7 +119,6 @@ public class Enemy : MonoBehaviour
             _audioSource.Play();
             Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, 2.8f);
-          
         }
 
         if (other.tag == "Missile")

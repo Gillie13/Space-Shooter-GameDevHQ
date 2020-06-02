@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
             if (_thrusterFuel >= 2)
             {
                 _speedBoost = 2.0f;
-                _thrusters.UseThruster(2);
+                _thrusters.UseThruster(1);
             }
             else
             {

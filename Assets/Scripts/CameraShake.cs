@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    private Transform transform;
+    private Transform _transform;
 
     private float _duration = 0.0f;
     private float _strength = 0.3f;
@@ -15,16 +15,15 @@ public class CameraShake : MonoBehaviour
 
     public void Awake()
     {
-        if (transform == null)
+        if (_transform == null)
         {
-            transform = GetComponent(typeof(Transform)) as Transform;
+            _transform = GetComponent(typeof(Transform)) as Transform;
         }
     }
 
     private void OnEnable()
     {
         _cameraPosition = transform.localPosition;
-
     }
 
 

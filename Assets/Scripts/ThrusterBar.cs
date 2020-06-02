@@ -8,7 +8,7 @@ public class ThrusterBar : MonoBehaviour
     private Image barImage;
     public const int thrusterMax = 100;
     public float _thrusterFuel = 0;
-    private float _thrusterRefillAmount = 40f;   
+    private float _thrusterRefillAmount = 30f;   
 
     void Start()
     {
@@ -17,10 +17,16 @@ public class ThrusterBar : MonoBehaviour
 
     private void Update()
     {
-        _thrusterFuel += _thrusterRefillAmount * Time.deltaTime;
-        _thrusterFuel = Mathf.Clamp(_thrusterFuel, 0f, thrusterMax);
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
         
-
+        }
+        else
+        {
+            _thrusterFuel += _thrusterRefillAmount * Time.deltaTime;
+            _thrusterFuel = Mathf.Clamp(_thrusterFuel, 0f, thrusterMax);
+        }
+            
         barImage.fillAmount = GetThrusterNormalised();
 
     }
@@ -30,6 +36,10 @@ public class ThrusterBar : MonoBehaviour
         if(_thrusterFuel >= amount)
         {
             _thrusterFuel -= amount;
+        }
+        else
+        {
+            _thrusterFuel = 0;
         }
     }
 
