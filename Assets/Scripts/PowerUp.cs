@@ -57,6 +57,9 @@ public class PowerUp : MonoBehaviour
                     case 5:
                         player.MissilesActive();
                         break;
+                    case 6:
+                        player.NoAmmoPowerDown();
+                        break;
                     default:
                         Debug.Log("Default Value");
                         break;

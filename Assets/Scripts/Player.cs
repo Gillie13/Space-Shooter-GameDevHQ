@@ -332,4 +332,10 @@ public class Player : MonoBehaviour
         _uiManager.UpdateAmmo(_laserAmmo);
     }
 
+    public void NoAmmoPowerDown()
+    {
+        _laserAmmo = 0;
+        _uiManager.UpdateAmmo(_laserAmmo);
+    }
+
 }
