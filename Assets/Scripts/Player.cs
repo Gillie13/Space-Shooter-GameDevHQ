@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     private float _speedBoost = 1.0f;
     [SerializeField]
     private int _laserAmmo = 15;
+    private int _laserAmmoMax = 15;
     private ThrusterBar _thrusters;
 
     [SerializeField]
@@ -325,6 +326,9 @@ public class Player : MonoBehaviour
     public void CollectAmmo()
     {
         _laserAmmo += 15;
+        if (_laserAmmo > 15) { 
+            _laserAmmo = _laserAmmoMax;
+        }
         _uiManager.UpdateAmmo(_laserAmmo);
     }
 
