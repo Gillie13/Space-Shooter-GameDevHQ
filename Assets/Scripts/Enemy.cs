@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour
     private Vector2 _movementDirection;
     private Vector2 _movementPerSecond;
 
+    private bool _enemyIsDestroyed = false;
+
 
     private void Start()
     {
@@ -51,23 +53,22 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         //Calculate the frequency of direction change
-        if (Time.time - _latestChangeDirectionTime > _directionChangeTime)
+        if (Time.time - _latestChangeDirectionTime > _directionChangeTime && _enemyIsDestroyed == false)
         {
             _latestChangeDirectionTime = Time.time;
             CalculateNewMovementVector();
         }
 
-        //Reposition Enemy once they fly outside the screen
+
         transform.position = new Vector2(transform.position.x + (_movementPerSecond.x * Time.deltaTime), transform.position.y + (_movementPerSecond.y * Time.deltaTime));
 
-
-        if (Time.time > _canFire)
+        if (Time.time > _canFire && _enemyIsDestroyed == false)
         {
-
             _fireRate = Random.Range(3.0f, 7.0f);
             _canFire = Time.time + _fireRate;
-            GameObject enemyLaser =  Instantiate(_enemyFirePrefab, transform.position, Quaternion.identity);
+            GameObject enemyLaser = Instantiate(_enemyFirePrefab, transform.position, Quaternion.identity);
             Laser[] lasers = enemyLaser.GetComponentsInChildren<Laser>();
 
             for (int i = 0; i < lasers.Length; i++)
@@ -75,6 +76,7 @@ public class Enemy : MonoBehaviour
                 lasers[i].AssignEnemyLaser();
             }
         }
+        
     }
 
     void CalculateNewMovementVector()
@@ -99,9 +101,9 @@ public class Enemy : MonoBehaviour
             {
                 player.Damage();
             }
-
+            _enemyIsDestroyed = true;
             _anim.SetTrigger("OnEnemyDeath");
-            _speed = 2;
+            //_speed = 2;
             _audioSource.Play();
             Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, 2.8f);
@@ -114,9 +116,12 @@ public class Enemy : MonoBehaviour
             {
                 _player.AddScore(10);
             }
+            _enemyIsDestroyed = true;
             _anim.SetTrigger("OnEnemyDeath");
-            _speed = 2;
+            //_speed = 2;
             _audioSource.Play();
+            // stop firing when destroyed
+            // Do not reposition if it leaves the game area
             Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, 2.8f);
         }
@@ -128,8 +133,9 @@ public class Enemy : MonoBehaviour
             {
                 _player.AddScore(10);
             }
+            _enemyIsDestroyed = true;
             _anim.SetTrigger("OnEnemyDeath");
-            _speed = 2;
+            //_speed = 2;
             _audioSource.Play();
             Destroy(GetComponent<Collider2D>());
             Destroy(this.gameObject, 2.8f);
