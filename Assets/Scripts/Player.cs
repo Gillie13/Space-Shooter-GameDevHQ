@@ -45,6 +45,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private AudioClip _laserSound;
+    [SerializeField]
+    private AudioClip _explosionSound;
     private AudioSource _audioSource;
 
     [SerializeField]
@@ -176,7 +178,7 @@ public class Player : MonoBehaviour
         if (_isTripleShotActive == true && _isMissilesActive == false)
         {
             Instantiate(_tripleShotPrefab, transform.position + new Vector3(-0.2f, 0.15f, 0), Quaternion.identity);
-            _audioSource.Play();
+            _audioSource.PlayOneShot(_laserSound);
         }
         else if (_isMissilesActive ==true && _isTripleShotActive == false && GameObject.FindGameObjectWithTag("Enemy") != null)
         {
@@ -187,7 +189,7 @@ public class Player : MonoBehaviour
             _laserAmmo--;
             _uiManager.UpdateAmmo(_laserAmmo);
             Instantiate(_laserPrefab, transform.position + new Vector3(0, 1.05f, 0), Quaternion.identity);
-            _audioSource.Play();
+            _audioSource.PlayOneShot(_laserSound);
         } 
 
         
@@ -226,9 +228,12 @@ public class Player : MonoBehaviour
         if (_lives == 2)
         {
             _leftEngine.SetActive(true);
-        } else if (_lives == 1)
+            _audioSource.PlayOneShot(_explosionSound);
+        }
+        else if (_lives == 1)
         {
             _rightEngine.SetActive(true);
+            _audioSource.PlayOneShot(_explosionSound);
         }
 
         _uiManager.UpdateLives(_lives);

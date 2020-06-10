@@ -13,9 +13,9 @@ public class Asteroid : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    /*void Start()
     {
-        _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+       // _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
     }
 
     // Update is called once per frame
@@ -23,9 +23,9 @@ public class Asteroid : MonoBehaviour
     {
 
         transform.Rotate(Vector3.forward * _rotateSpeed * Time.deltaTime);
-    }
+    }*/
 
-    private void OnTriggerEnter2D(Collider2D other)
+    /*private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Laser")
         {
@@ -34,5 +34,5 @@ public class Asteroid : MonoBehaviour
             _spawnManager.StartSpawning();
             Destroy(this.gameObject, 0.1f);
         }
-    }
+    }*/
 }

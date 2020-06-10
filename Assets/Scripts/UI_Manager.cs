@@ -11,6 +11,9 @@ public class UI_Manager : MonoBehaviour
     [SerializeField]
     private Text _ammoCount;
     [SerializeField]
+    private Text _waveNumberText;
+    public bool displayWaveNumber;
+    [SerializeField]
     private Text _gameOverText;
     [SerializeField]
     private Text _restartLevelPrompt;
@@ -30,6 +33,7 @@ public class UI_Manager : MonoBehaviour
         _ammoCount.text = "Ammo: " + 15 + "/15";
         _gameOverText.gameObject.SetActive(false);
         _restartLevelPrompt.gameObject.SetActive(false);
+        _waveNumberText.gameObject.SetActive(false);
         _gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
 
     }
@@ -54,6 +58,29 @@ public class UI_Manager : MonoBehaviour
         else { 
             GameOverSequence();
         }
+    }
+
+    public void WaveText(int waveNumber)
+    {
+        _waveNumberText.text = "WAVE " + waveNumber.ToString();
+        StartCoroutine(DisplayWaveNumber());
+    }
+
+    IEnumerator DisplayWaveNumber()
+    {
+        while (true)
+        {
+            if (displayWaveNumber)
+            {
+                _waveNumberText.gameObject.SetActive(true);
+                yield return new WaitForSeconds(0.3f);
+                _waveNumberText.gameObject.SetActive(false);
+                yield return new WaitForSeconds(0.3f);
+            }
+
+            yield return null;
+        }
+
     }
 
     private void GameOverSequence()

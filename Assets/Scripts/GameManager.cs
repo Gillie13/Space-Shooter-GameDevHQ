@@ -7,6 +7,13 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private bool _isGameOver;
+    private SpawnManager _spawnManager;
+
+    /*private void Start()
+    {
+        _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+        _spawnManager.StartSpawning();
+    }*/
 
     private void Update()
     {

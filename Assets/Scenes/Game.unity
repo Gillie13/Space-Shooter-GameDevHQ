@@ -157,6 +157,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 1748729905}
   _ammoCount: {fileID: 343131640}
+  _waveNumberText: {fileID: 214916881}
+  displayWaveNumber: 0
   _gameOverText: {fileID: 230237964}
   _restartLevelPrompt: {fileID: 309720835}
   _livesImg: {fileID: 2141886753}
@@ -242,6 +244,7 @@ RectTransform:
   - {fileID: 309720837}
   - {fileID: 343131639}
   - {fileID: 1541019840}
+  - {fileID: 214916880}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -319,6 +322,83 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &214916879
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 214916880}
+  - component: {fileID: 214916882}
+  - component: {fileID: 214916881}
+  m_Layer: 5
+  m_Name: WaveNumber
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &214916880
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214916879}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 121835772}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &214916881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214916879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: d0e5a708c6efab34c935980043899e70, type: 3}
+    m_FontSize: 50
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 5
+    m_MaxSize: 50
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: Wave Number
+--- !u!222 &214916882
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214916879}
+  m_CullTransparentMesh: 0
 --- !u!1 &223996602
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,6 +450,7 @@ MonoBehaviour:
   _leftEngine: {fileID: 256570802}
   _score: 0
   _laserSound: {fileID: 8300000, guid: 75676f361bdfeaf41a46623e95df3dbc, type: 3}
+  _explosionSound: {fileID: 8300000, guid: a885c043fab7e46438bba03ba9dab6bc, type: 3}
   _explosionPrefab: {fileID: 7812153025319022829, guid: 0998c00711c134859a5c9fbcc347b3db,
     type: 3}
 --- !u!212 &223996604
@@ -2113,9 +2194,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0c1cd34af185498ba7f2a18a466ff7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _waveNumber: 0
+  _enemyCount: 0
+  _enemyAlive: 0
   _enemyPrefab: {fileID: 3376590996907781324, guid: ef25218337eb64b0e8e6ff44895c8721,
     type: 3}
   _enemyContainer: {fileID: 1713627631}
+  _spawnTime: 3
+  _stopSpawning: 0
   _powerUps:
   - {fileID: 1740176955514675033, guid: f439a7fb2cab04392a99028270fa136c, type: 3}
   - {fileID: 1088768962755905889, guid: b845bb06abe1646fb8a1e5d80472bcbc, type: 3}
@@ -2443,6 +2529,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Asteroid
+      objectReference: {fileID: 0}
+    - target: {fileID: 5510733487944508946, guid: c6ee530e8a9df4dfb8077ed1c729c932,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6ee530e8a9df4dfb8077ed1c729c932, type: 3}

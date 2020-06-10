@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private float _speed = 3.0f;
+ 
     private Player _player;
-    private Laser _laser;
     private Animator _anim;
     private AudioSource _audioSource;
 
@@ -25,7 +24,9 @@ public class Enemy : MonoBehaviour
     private Vector2 _movementDirection;
     private Vector2 _movementPerSecond;
 
-    private bool _enemyIsDestroyed = false;
+    private SpawnManager _spawnManager;
+
+    public bool _enemyIsDestroyed = false;
 
 
     private void Start()
@@ -35,6 +36,12 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("Player is Null!");
         }
+        _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
+        if (_spawnManager == null)
+        {
+            Debug.LogError("Spawn Manager is Nullz!");
+        }
+
 
         //Randomised Movement
         _latestChangeDirectionTime = 0f;
@@ -101,29 +108,20 @@ public class Enemy : MonoBehaviour
             {
                 player.Damage();
             }
-            _enemyIsDestroyed = true;
-            _anim.SetTrigger("OnEnemyDeath");
-            //_speed = 2;
-            _audioSource.Play();
-            Destroy(GetComponent<Collider2D>());
-            Destroy(this.gameObject, 2.8f);
+            EnemyDestroyed();
+
+
         }
 
-        if(other.tag == "Laser")
+        if (other.tag == "Laser")
         {
             Destroy(other.gameObject);
             if (_player != null)
             {
                 _player.AddScore(10);
             }
-            _enemyIsDestroyed = true;
-            _anim.SetTrigger("OnEnemyDeath");
-            //_speed = 2;
-            _audioSource.Play();
-            // stop firing when destroyed
-            // Do not reposition if it leaves the game area
-            Destroy(GetComponent<Collider2D>());
-            Destroy(this.gameObject, 2.8f);
+            EnemyDestroyed();
+
         }
 
         if (other.tag == "Missile")
@@ -133,13 +131,18 @@ public class Enemy : MonoBehaviour
             {
                 _player.AddScore(10);
             }
-            _enemyIsDestroyed = true;
-            _anim.SetTrigger("OnEnemyDeath");
-            //_speed = 2;
-            _audioSource.Play();
-            Destroy(GetComponent<Collider2D>());
-            Destroy(this.gameObject, 2.8f);
+            EnemyDestroyed();
         }
+    }
+
+    private void EnemyDestroyed()
+    {
+        _enemyIsDestroyed = true;
+        _spawnManager.OnEnemyDeath();
+        _anim.SetTrigger("OnEnemyDeath");
+        _audioSource.Play();
+        Destroy(GetComponent<Collider2D>());
+        Destroy(this.gameObject, 2.8f);
     }
 
 
