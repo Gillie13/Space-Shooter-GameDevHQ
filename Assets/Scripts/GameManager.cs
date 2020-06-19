@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private bool _isGameOver;
-    private SpawnManager _spawnManager;
+    //private SpawnManager _spawnManager;
 
     /*private void Start()
     {

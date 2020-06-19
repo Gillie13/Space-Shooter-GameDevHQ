@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
- 
+
     private Player _player;
     private Animator _anim;
     private AudioSource _audioSource;
@@ -83,14 +83,14 @@ public class Enemy : MonoBehaviour
                 lasers[i].AssignEnemyLaser();
             }
         }
-        
+
     }
 
     void CalculateNewMovementVector()
     {
         _movementDirection = new Vector2(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0f)).normalized;
         _movementPerSecond = _movementDirection * _enemyVelocity;
-        
+
         if (transform.position.y <= -7f || transform.position.y >= 8f || transform.position.x <= -10f || transform.position.x >= 10f)
         {
             float randomX = Random.Range(-9f, 9f);

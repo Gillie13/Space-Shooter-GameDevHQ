@@ -16,6 +16,8 @@ public class UI_Manager : MonoBehaviour
     [SerializeField]
     private Text _gameOverText;
     [SerializeField]
+    private Text _gameWonText;
+    [SerializeField]
     private Text _restartLevelPrompt;
     [SerializeField]
     private Image _livesImg;
@@ -92,6 +94,15 @@ public class UI_Manager : MonoBehaviour
 
     }
 
+    public void GameWonSequence()
+    {
+        _gameManager.GameOver();
+        _gameWonText.gameObject.SetActive(true);
+        _restartLevelPrompt.gameObject.SetActive(true);
+        StartCoroutine(FlashingGameWon());
+
+    }
+
     IEnumerator FlashingGameOver()
     {
         while (true)
@@ -99,6 +110,17 @@ public class UI_Manager : MonoBehaviour
             _gameOverText.gameObject.SetActive(true);
             yield return new WaitForSeconds(0.2f);
             _gameOverText.gameObject.SetActive(false);
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
+    IEnumerator FlashingGameWon()
+    {
+        while (true)
+        {
+            _gameWonText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.2f);
+            _gameWonText.gameObject.SetActive(false);
             yield return new WaitForSeconds(0.2f);
         }
     }
