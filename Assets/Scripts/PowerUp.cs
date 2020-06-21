@@ -52,13 +52,13 @@ public class PowerUp : MonoBehaviour
                         player.CollectAmmo();
                         break;
                     case 4:
-                        player.RestoreLife();
+                        player.NoAmmoPowerDown();
                         break;
                     case 5:
                         player.MissilesActive();
                         break;
                     case 6:
-                        player.NoAmmoPowerDown();
+                        player.RestoreLife();
                         break;
                     default:
                         Debug.Log("Default Value");
