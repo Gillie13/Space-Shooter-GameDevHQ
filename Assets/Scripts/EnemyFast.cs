@@ -10,6 +10,7 @@ public class EnemyFast : MonoBehaviour
     private float _movementSpeed = 4.0f;
 
     private Player _player;
+
     private Animator _anim;
     private AudioSource _audioSource;
 
@@ -36,15 +37,18 @@ public class EnemyFast : MonoBehaviour
             Debug.LogError("Spawn Manager is Null!");
         }
 
+        _audioSource = GetComponent<AudioSource>();
+        if (_audioSource == null)
+        {
+            Debug.LogError("AudioSource is NULL!");
+        }
 
         _anim = GetComponent<Animator>();
-
-        _audioSource = GetComponent<AudioSource>();
-
         if (_anim == null)
         {
-            Debug.LogError("Anim is NULL");
+            Debug.LogError("Animator is NULL");
         }
+
     }
 
     private void Update()
@@ -62,8 +66,9 @@ public class EnemyFast : MonoBehaviour
             direction.Normalize();
         }
 
+
+
     }
-    
  
 
     private void OnTriggerEnter2D(Collider2D other)

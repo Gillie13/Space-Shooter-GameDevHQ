@@ -699,8 +699,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 5.746628
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2310,6 +2310,7 @@ MonoBehaviour:
     enemies:
     - {fileID: 3376590996907781324, guid: ef25218337eb64b0e8e6ff44895c8721, type: 3}
     - {fileID: 6926086588531000346, guid: b31eb4f5bb4cd4467992dd5450000a24, type: 3}
+    - {fileID: 6899141354102431907, guid: 09fae69059359409eab0e6e6de6c62f8, type: 3}
     powerUps:
     - {fileID: 3248389524871544289, guid: 1ff10d376787f4282b575bc389a271ae, type: 3}
     - {fileID: 2475206311143806195, guid: f7ce77e8b44ab4acc9c01a79bd302ce3, type: 3}
@@ -2322,6 +2323,7 @@ MonoBehaviour:
     enemies:
     - {fileID: 3376590996907781324, guid: ef25218337eb64b0e8e6ff44895c8721, type: 3}
     - {fileID: 6926086588531000346, guid: b31eb4f5bb4cd4467992dd5450000a24, type: 3}
+    - {fileID: 6899141354102431907, guid: 09fae69059359409eab0e6e6de6c62f8, type: 3}
     powerUps:
     - {fileID: 3248389524871544289, guid: 1ff10d376787f4282b575bc389a271ae, type: 3}
     - {fileID: 2475206311143806195, guid: f7ce77e8b44ab4acc9c01a79bd302ce3, type: 3}

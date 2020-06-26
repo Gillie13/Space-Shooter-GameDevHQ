@@ -31,30 +31,34 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        //Randomised Movement
+        _latestChangeDirectionTime = 0f;
+        CalculateNewMovementVector();
+
         _player = GameObject.Find("Player").GetComponent<Player>();
         if (_player == null)
         {
             Debug.LogError("Player is Null!");
         }
+
         _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
         if (_spawnManager == null)
         {
-            Debug.LogError("Spawn Manager is Nullz!");
+            Debug.LogError("Spawn Manager is Null!");
         }
-
-
-        //Randomised Movement
-        _latestChangeDirectionTime = 0f;
-        CalculateNewMovementVector();
-
-        _anim = GetComponent<Animator>();
 
         _audioSource = GetComponent<AudioSource>();
+        if (_audioSource == null)
+        {
+            Debug.LogError("AudioSource is NULL!");
+        }
 
+        _anim = GetComponent<Animator>();
         if (_anim == null)
         {
-            Debug.LogError("Anim is NULL");
+            Debug.LogError("Animinator is NULL");
         }
+
     }
 
     // Update is called once per frame
