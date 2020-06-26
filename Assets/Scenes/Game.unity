@@ -2292,7 +2292,7 @@ MonoBehaviour:
     powerUps:
     - {fileID: 3248389524871544289, guid: 1ff10d376787f4282b575bc389a271ae, type: 3}
     - {fileID: 1088768962755905889, guid: b845bb06abe1646fb8a1e5d80472bcbc, type: 3}
-  - enemyCount: 10
+  - enemyCount: 5
     enemySpawnTime: 2
     lifePowerUpCount: 1
     lifePowerUpSpawnTime: 10
@@ -2303,7 +2303,7 @@ MonoBehaviour:
     - {fileID: 3248389524871544289, guid: 1ff10d376787f4282b575bc389a271ae, type: 3}
     - {fileID: 2475206311143806195, guid: f7ce77e8b44ab4acc9c01a79bd302ce3, type: 3}
     - {fileID: 1740176955514675033, guid: f439a7fb2cab04392a99028270fa136c, type: 3}
-  - enemyCount: 15
+  - enemyCount: 10
     enemySpawnTime: 2
     lifePowerUpCount: 2
     lifePowerUpSpawnTime: 10
@@ -2316,7 +2316,7 @@ MonoBehaviour:
     - {fileID: 2475206311143806195, guid: f7ce77e8b44ab4acc9c01a79bd302ce3, type: 3}
     - {fileID: 1740176955514675033, guid: f439a7fb2cab04392a99028270fa136c, type: 3}
     - {fileID: 2333625711653755781, guid: d303e2510b47a4958b2d539a5caa01a1, type: 3}
-  - enemyCount: 20
+  - enemyCount: 15
     enemySpawnTime: 1.5
     lifePowerUpCount: 3
     lifePowerUpSpawnTime: 10

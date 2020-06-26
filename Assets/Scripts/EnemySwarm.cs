@@ -72,13 +72,10 @@ public class EnemySwarm : MonoBehaviour
             transform.position = new Vector3(randomX, 7, 0);
         }
 
-        if ((transform.position.y >= -3f || transform.position.y <= 6f || transform.position.x >= -9f || transform.position.x <= 9f) && _player != null)
+        if ((transform.position.y >= -5f || transform.position.y <= 6f || transform.position.x >= -9f || transform.position.x <= 9f) && _player != null)
         {
             CanFire();
         }
-
-
-
 
     }
 

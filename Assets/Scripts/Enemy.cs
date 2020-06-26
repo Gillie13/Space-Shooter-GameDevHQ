@@ -95,7 +95,7 @@ public class Enemy : MonoBehaviour
         _movementDirection = new Vector2(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0f)).normalized;
         _movementPerSecond = _movementDirection * _enemyVelocity;
 
-        if (transform.position.y <= -7f || transform.position.y >= 8f || transform.position.x <= -10f || transform.position.x >= 10f)
+        if (transform.position.y <= -5f || transform.position.y >= 8f || transform.position.x <= -10f || transform.position.x >= 10f)
         {
             float randomX = Random.Range(-9f, 9f);
             transform.position = new Vector3(randomX, 7, 0);
