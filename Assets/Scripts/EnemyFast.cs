@@ -7,7 +7,13 @@ public class EnemyFast : MonoBehaviour
     private Transform _target;
     private Rigidbody2D _rigidBody;
     private float _angleChangingSpeed = 200f;
-    private float _movementSpeed = 4.0f;
+    private float _movementSpeed = 5.0f;
+    private float _downSpeed = 4.0f;
+
+    //Shield
+    [SerializeField]
+    private GameObject _shieldOnPrefab;
+    private bool _isShieldActive = true;
 
     private Player _player;
 
@@ -49,27 +55,33 @@ public class EnemyFast : MonoBehaviour
             Debug.LogError("Animator is NULL");
         }
 
+        transform.GetChild(0).gameObject.SetActive(true);
+
     }
 
     private void Update()
     {
         if (_enemyIsDestroyed == false && _player != null)
         {
-            Vector2 direction = (Vector2)_target.position - _rigidBody.position;
-            direction.Normalize();
-            float rotateAmount = Vector3.Cross(direction, -transform.up).z;
-            _rigidBody.angularVelocity = -_angleChangingSpeed * rotateAmount;
-            _rigidBody.velocity = -transform.up * _movementSpeed;
-        } else
-        {
-            Vector2 direction = (Vector2.down);
-            direction.Normalize();
+            if (Vector2.Distance(transform.position, _target.position) > 5f)
+            {
+                Vector2 direction = (Vector2.down) - _rigidBody.position;
+                direction.Normalize();
+                float rotateAmount = Vector3.Cross(direction, -transform.up).z;
+                _rigidBody.angularVelocity = -_angleChangingSpeed * rotateAmount;
+                _rigidBody.velocity = -transform.up * _downSpeed;
+            }
+            else if (Vector2.Distance(transform.position, _target.position) < 5f)
+            {
+                Vector2 direction = (Vector2)_target.position - _rigidBody.position;
+                direction.Normalize();
+                float rotateAmount = Vector3.Cross(direction, -transform.up).z;
+                _rigidBody.angularVelocity = -_angleChangingSpeed * rotateAmount;
+                _rigidBody.velocity = -transform.up * _movementSpeed;
+            }
         }
 
-
-
     }
- 
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -81,7 +93,18 @@ public class EnemyFast : MonoBehaviour
             {
                 player.Damage();
             }
-            EnemyDestroyed();
+
+            if (_isShieldActive == true)
+            {
+                _isShieldActive = false;
+                transform.GetChild(0).gameObject.SetActive(false);
+                _audioSource.Play();
+            }
+            else
+            {
+                EnemyDestroyed();
+
+            }
 
 
         }
@@ -93,7 +116,18 @@ public class EnemyFast : MonoBehaviour
             {
                 _player.AddScore(10);
             }
-            EnemyDestroyed();
+
+            if (_isShieldActive == true)
+            {
+                _isShieldActive = false;
+                transform.GetChild(0).gameObject.SetActive(false);
+                _audioSource.Play();
+            }
+            else
+            {
+                EnemyDestroyed();
+
+            }
 
         }
 
@@ -104,7 +138,18 @@ public class EnemyFast : MonoBehaviour
             {
                 _player.AddScore(10);
             }
-            EnemyDestroyed();
+
+            if (_isShieldActive == true)
+            {
+                _isShieldActive = false;
+                transform.GetChild(0).gameObject.SetActive(false);
+                _audioSource.Play();
+            }
+            else
+            {
+                EnemyDestroyed();
+
+            }
         }
     }
 
