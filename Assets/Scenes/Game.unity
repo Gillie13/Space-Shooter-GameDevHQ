@@ -2282,11 +2282,15 @@ MonoBehaviour:
   _uiManager: {fileID: 0}
   lifePowerUp: {fileID: 4245500006325131139, guid: b91c544cb38fe4efeade85621cf3e70e,
     type: 3}
+  missilePowerUp: {fileID: 2475206311143806195, guid: f7ce77e8b44ab4acc9c01a79bd302ce3,
+    type: 3}
   waves:
   - enemyCount: 3
     enemySpawnTime: 3
     lifePowerUpCount: 0
     lifePowerUpSpawnTime: 0
+    missilePowerUpCount: 0
+    missilePowerUpSpawnTime: 0
     enemies:
     - {fileID: 3376590996907781324, guid: ef25218337eb64b0e8e6ff44895c8721, type: 3}
     powerUps:
@@ -2296,6 +2300,8 @@ MonoBehaviour:
     enemySpawnTime: 2
     lifePowerUpCount: 1
     lifePowerUpSpawnTime: 10
+    missilePowerUpCount: 1
+    missilePowerUpSpawnTime: 10
     enemies:
     - {fileID: 3376590996907781324, guid: ef25218337eb64b0e8e6ff44895c8721, type: 3}
     - {fileID: 6926086588531000346, guid: b31eb4f5bb4cd4467992dd5450000a24, type: 3}
@@ -2307,6 +2313,8 @@ MonoBehaviour:
     enemySpawnTime: 2
     lifePowerUpCount: 2
     lifePowerUpSpawnTime: 10
+    missilePowerUpCount: 0
+    missilePowerUpSpawnTime: 0
     enemies:
     - {fileID: 3376590996907781324, guid: ef25218337eb64b0e8e6ff44895c8721, type: 3}
     - {fileID: 6926086588531000346, guid: b31eb4f5bb4cd4467992dd5450000a24, type: 3}
@@ -2320,6 +2328,8 @@ MonoBehaviour:
     enemySpawnTime: 1.5
     lifePowerUpCount: 3
     lifePowerUpSpawnTime: 10
+    missilePowerUpCount: 0
+    missilePowerUpSpawnTime: 0
     enemies:
     - {fileID: 3376590996907781324, guid: ef25218337eb64b0e8e6ff44895c8721, type: 3}
     - {fileID: 6926086588531000346, guid: b31eb4f5bb4cd4467992dd5450000a24, type: 3}

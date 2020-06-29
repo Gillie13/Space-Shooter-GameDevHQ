@@ -10,6 +10,8 @@ public class Wave
     public float enemySpawnTime;
     public int lifePowerUpCount;
     public float lifePowerUpSpawnTime;
+    public int missilePowerUpCount;
+    public float missilePowerUpSpawnTime;
     public GameObject[] enemies;
     public GameObject[] powerUps;
 
@@ -29,6 +31,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private UI_Manager _uiManager;
     public GameObject lifePowerUp;
+    public GameObject missilePowerUp;
 
     public Wave[] waves;
 
@@ -50,6 +53,7 @@ public class SpawnManager : MonoBehaviour
             _waveNumber++;
             StartCoroutine(SpawnEnemyRoutine());
             StartCoroutine(SpawnLifePowerUpRoutine());
+            StartCoroutine(SpawnMissilePowerUpRoutine());
         }
     }
 
@@ -111,6 +115,20 @@ public class SpawnManager : MonoBehaviour
                 Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
                 Instantiate(lifePowerUp, posToSpawn, Quaternion.identity);
                 yield return new WaitForSeconds(waves[_waveNumber -1].lifePowerUpSpawnTime);
+            }
+        }
+    }
+
+    IEnumerator SpawnMissilePowerUpRoutine()
+    {
+        for (int i = 0; i < waves[_waveNumber - 1].missilePowerUpCount; i++)
+        {
+            if (_stopSpawning == false)
+            {
+                yield return new WaitForSeconds(waves[_waveNumber - 1].missilePowerUpSpawnTime);
+                Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
+                Instantiate(missilePowerUp, posToSpawn, Quaternion.identity);
+                yield return new WaitForSeconds(waves[_waveNumber - 1].missilePowerUpSpawnTime);
             }
         }
     }
