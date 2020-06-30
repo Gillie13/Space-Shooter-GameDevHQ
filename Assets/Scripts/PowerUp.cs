@@ -16,6 +16,7 @@ public class PowerUp : MonoBehaviour
     private Rigidbody2D _rigidBody;
     private float _movementSpeed = 6.0f;
     private Vector2 _moveDirection;
+    private bool _cKeyPressed = false;
 
     private void Start()
     {
@@ -31,13 +32,18 @@ public class PowerUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.down * _speed * Time.deltaTime);
-  
-        if (Input.GetKeyDown(KeyCode.C))
+        if (_cKeyPressed == false)
         {
+            transform.Translate(Vector3.down * _speed * Time.deltaTime);
+        }
+
+        if (Input.GetKeyDown(KeyCode.C) && _cKeyPressed == false)
+        {
+            _cKeyPressed = true;
+            transform.Translate(Vector3.zero);
             _moveDirection = (_player.transform.position - transform.position).normalized * _movementSpeed;
             _rigidBody.velocity = new Vector2(_moveDirection.x, _moveDirection.y);
-        }
+        } 
         else if (transform.position.y <= -4.5f)
         {
             Destroy(this.gameObject);
