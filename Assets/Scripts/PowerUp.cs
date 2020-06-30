@@ -28,8 +28,11 @@ public class PowerUp : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-
-        if (other.tag == "Player")
+        if (other.tag == "EnemyLaser")
+        {
+            Destroy(this.gameObject);
+        }
+        else if (other.tag == "Player")
         {
             Player player = other.transform.GetComponent<Player>();
 

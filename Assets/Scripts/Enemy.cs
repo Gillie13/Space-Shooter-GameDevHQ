@@ -75,6 +75,7 @@ public class Enemy : MonoBehaviour
 
         transform.position = new Vector2(transform.position.x + (_movementPerSecond.x * Time.deltaTime), transform.position.y + (_movementPerSecond.y * Time.deltaTime));
 
+
         if (Time.time > _canFire && _enemyIsDestroyed == false)
         {
             _fireRate = Random.Range(3.0f, 7.0f);
