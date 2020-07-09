@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     private int _laserAmmoMax = 15;
     private ThrusterBar _thrusters;
 
+
     [SerializeField]
     private GameObject _rightEngine, _leftEngine;
 

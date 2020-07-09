@@ -14,6 +14,7 @@ public class Wave
     public float missilePowerUpSpawnTime;
     public GameObject[] enemies;
     public GameObject[] powerUps;
+    public bool bossWave;
 
 }
 
@@ -32,19 +33,22 @@ public class SpawnManager : MonoBehaviour
     private UI_Manager _uiManager;
     public GameObject lifePowerUp;
     public GameObject missilePowerUp;
-
+    [SerializeField]
     public Wave[] waves;
-
 
     // Start is called before the first frame update
 
     void Start()
     {
         _uiManager = GameObject.Find("Canvas").GetComponent<UI_Manager>();
+
+        if (_uiManager == null)
+        {
+            Debug.LogError("UIMnager is Null!");
+        }
         WaveSpawner();
         StartCoroutine(SpawnPowerUpRoutine());
     }
-
 
     private void WaveSpawner()
     {
@@ -69,7 +73,7 @@ public class SpawnManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             for (int i = 0; i < waves[_waveNumber - 1].enemyCount; i++)
             {
-                if (_stopSpawning == false)
+                if (_stopSpawning == false && waves[_waveNumber -1].bossWave == false)
                 {
                     int randomEnemy = Random.Range(0, waves[_waveNumber - 1].enemies.Length);
                     Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
@@ -78,6 +82,14 @@ public class SpawnManager : MonoBehaviour
                     _enemyAlive++;
                     yield return new WaitForSeconds(waves[_waveNumber - 1].enemySpawnTime);
                 }
+                else if (_stopSpawning == false && waves[_waveNumber -1].bossWave == true)
+                {
+                    GameObject newEnemy = Instantiate(waves[_waveNumber - 1].enemies[0]);
+                    newEnemy.transform.parent = _enemyContainer.transform;
+                    _enemyAlive++;
+                    yield return new WaitForSeconds(waves[_waveNumber - 1].enemySpawnTime);
+                }
+               
             }
             while (_enemyAlive != 0)
             {

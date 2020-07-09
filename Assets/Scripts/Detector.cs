@@ -7,8 +7,6 @@ public class Detector : MonoBehaviour
     [SerializeField]
     private GameObject _enemyFirePrefab;
 
-    private float _time = 0f;
-
     private GameObject _colliderHitResult;
 
 

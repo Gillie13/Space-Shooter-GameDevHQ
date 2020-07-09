@@ -248,7 +248,7 @@ RectTransform:
   - {fileID: 214916880}
   - {fileID: 1851833422}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1298,7 +1298,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &742496135 stripped
 Transform:
@@ -1546,7 +1546,7 @@ Transform:
   m_Children:
   - {fileID: 1351224591}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &917500498
 AudioSource:
@@ -1686,7 +1686,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1351224590
 GameObject:
@@ -2244,7 +2244,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2021236790
 GameObject:
@@ -2285,18 +2285,19 @@ MonoBehaviour:
   missilePowerUp: {fileID: 2475206311143806195, guid: f7ce77e8b44ab4acc9c01a79bd302ce3,
     type: 3}
   waves:
-  - enemyCount: 4
+  - enemyCount: 5
     enemySpawnTime: 3
     lifePowerUpCount: 0
     lifePowerUpSpawnTime: 0
     missilePowerUpCount: 0
     missilePowerUpSpawnTime: 0
     enemies:
-    - {fileID: 1704118574962792668, guid: 7c1abd015aedf4a8aab249d5ec4623be, type: 3}
+    - {fileID: 3376590996907781324, guid: ef25218337eb64b0e8e6ff44895c8721, type: 3}
     powerUps:
     - {fileID: 3248389524871544289, guid: 1ff10d376787f4282b575bc389a271ae, type: 3}
     - {fileID: 1088768962755905889, guid: b845bb06abe1646fb8a1e5d80472bcbc, type: 3}
-  - enemyCount: 5
+    bossWave: 0
+  - enemyCount: 10
     enemySpawnTime: 2
     lifePowerUpCount: 1
     lifePowerUpSpawnTime: 10
@@ -2309,6 +2310,7 @@ MonoBehaviour:
     - {fileID: 3248389524871544289, guid: 1ff10d376787f4282b575bc389a271ae, type: 3}
     - {fileID: 2475206311143806195, guid: f7ce77e8b44ab4acc9c01a79bd302ce3, type: 3}
     - {fileID: 1740176955514675033, guid: f439a7fb2cab04392a99028270fa136c, type: 3}
+    bossWave: 0
   - enemyCount: 10
     enemySpawnTime: 2
     lifePowerUpCount: 2
@@ -2324,7 +2326,8 @@ MonoBehaviour:
     - {fileID: 2475206311143806195, guid: f7ce77e8b44ab4acc9c01a79bd302ce3, type: 3}
     - {fileID: 1740176955514675033, guid: f439a7fb2cab04392a99028270fa136c, type: 3}
     - {fileID: 2333625711653755781, guid: d303e2510b47a4958b2d539a5caa01a1, type: 3}
-  - enemyCount: 15
+    bossWave: 0
+  - enemyCount: 20
     enemySpawnTime: 1.5
     lifePowerUpCount: 3
     lifePowerUpSpawnTime: 10
@@ -2334,6 +2337,7 @@ MonoBehaviour:
     - {fileID: 3376590996907781324, guid: ef25218337eb64b0e8e6ff44895c8721, type: 3}
     - {fileID: 6926086588531000346, guid: b31eb4f5bb4cd4467992dd5450000a24, type: 3}
     - {fileID: 6899141354102431907, guid: 09fae69059359409eab0e6e6de6c62f8, type: 3}
+    - {fileID: 1704118574962792668, guid: 7c1abd015aedf4a8aab249d5ec4623be, type: 3}
     powerUps:
     - {fileID: 3248389524871544289, guid: 1ff10d376787f4282b575bc389a271ae, type: 3}
     - {fileID: 2475206311143806195, guid: f7ce77e8b44ab4acc9c01a79bd302ce3, type: 3}
@@ -2341,6 +2345,23 @@ MonoBehaviour:
     - {fileID: 2333625711653755781, guid: d303e2510b47a4958b2d539a5caa01a1, type: 3}
     - {fileID: 1088768962755905889, guid: b845bb06abe1646fb8a1e5d80472bcbc, type: 3}
     - {fileID: 1740176955514675033, guid: f439a7fb2cab04392a99028270fa136c, type: 3}
+    bossWave: 0
+  - enemyCount: 1
+    enemySpawnTime: 1.5
+    lifePowerUpCount: 3
+    lifePowerUpSpawnTime: 10
+    missilePowerUpCount: 2
+    missilePowerUpSpawnTime: 3
+    enemies:
+    - {fileID: 5760890758831808261, guid: 9cd69fbab5edb46a3b6c58ba819ac475, type: 3}
+    powerUps:
+    - {fileID: 3248389524871544289, guid: 1ff10d376787f4282b575bc389a271ae, type: 3}
+    - {fileID: 2475206311143806195, guid: f7ce77e8b44ab4acc9c01a79bd302ce3, type: 3}
+    - {fileID: 2177921818433379481, guid: bbadcd5bea8624257a45d8784c77907e, type: 3}
+    - {fileID: 2333625711653755781, guid: d303e2510b47a4958b2d539a5caa01a1, type: 3}
+    - {fileID: 1088768962755905889, guid: b845bb06abe1646fb8a1e5d80472bcbc, type: 3}
+    - {fileID: 1740176955514675033, guid: f439a7fb2cab04392a99028270fa136c, type: 3}
+    bossWave: 1
 --- !u!4 &2021236792
 Transform:
   m_ObjectHideFlags: 0
@@ -2579,92 +2600,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af1a69c4115f24ddc9eb326f0d3e1c78, type: 3}
---- !u!1001 &5642711689953325418
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 354934714492629047, guid: c6ee530e8a9df4dfb8077ed1c729c932,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 354934714492629047, guid: c6ee530e8a9df4dfb8077ed1c729c932,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 354934714492629047, guid: c6ee530e8a9df4dfb8077ed1c729c932,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 354934714492629047, guid: c6ee530e8a9df4dfb8077ed1c729c932,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 354934714492629047, guid: c6ee530e8a9df4dfb8077ed1c729c932,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 354934714492629047, guid: c6ee530e8a9df4dfb8077ed1c729c932,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 354934714492629047, guid: c6ee530e8a9df4dfb8077ed1c729c932,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 354934714492629047, guid: c6ee530e8a9df4dfb8077ed1c729c932,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 354934714492629047, guid: c6ee530e8a9df4dfb8077ed1c729c932,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 354934714492629047, guid: c6ee530e8a9df4dfb8077ed1c729c932,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 354934714492629047, guid: c6ee530e8a9df4dfb8077ed1c729c932,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 354934714492629047, guid: c6ee530e8a9df4dfb8077ed1c729c932,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 354934714492629047, guid: c6ee530e8a9df4dfb8077ed1c729c932,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 354934714492629047, guid: c6ee530e8a9df4dfb8077ed1c729c932,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5510733487944508946, guid: c6ee530e8a9df4dfb8077ed1c729c932,
-        type: 3}
-      propertyPath: m_Name
-      value: Asteroid
-      objectReference: {fileID: 0}
-    - target: {fileID: 5510733487944508946, guid: c6ee530e8a9df4dfb8077ed1c729c932,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c6ee530e8a9df4dfb8077ed1c729c932, type: 3}

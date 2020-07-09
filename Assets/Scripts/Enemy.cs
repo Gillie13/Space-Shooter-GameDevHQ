@@ -58,7 +58,6 @@ public class Enemy : MonoBehaviour
         {
             Debug.LogError("Animinator is NULL");
         }
-
     }
 
     // Update is called once per frame
@@ -108,10 +107,9 @@ public class Enemy : MonoBehaviour
 
         if (other.tag == "Player")
         {
-            Player player = other.transform.GetComponent<Player>();
-            if (player != null)
+            if (_player != null)
             {
-                player.Damage();
+                _player.Damage();
             }
             EnemyDestroyed();
 

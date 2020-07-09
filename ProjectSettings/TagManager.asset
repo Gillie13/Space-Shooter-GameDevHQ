@@ -55,3 +55,6 @@ TagManager:
   - name: Background
     uniqueID: 1991658789
     locked: 0
+  - name: Laser
+    uniqueID: 661962403
+    locked: 0

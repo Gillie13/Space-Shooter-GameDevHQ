@@ -156,8 +156,8 @@ public class EnemyDodger : MonoBehaviour
     {
         while (_dodge == true)
         {
-            _durationOfDodge = Random.Range(2f, 6f);
-            _dodgeSpeed = Random.Range(3f, 6f);
+            _durationOfDodge = Random.Range(2f, 3f);
+            _dodgeSpeed = Random.Range(3f, 4f);
             
             if (_dodgeDirection <= 1)
             {
